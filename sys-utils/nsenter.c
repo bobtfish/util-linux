@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
 	if (do_fork == 1)
 		continue_as_child();
 
-	if (namespaces & CLONE_NEWUSER) {
+	if (uid > 0 || gid > 0) {
 		if (setgroups(0, NULL))		/* drop supplementary groups */
 			err(EXIT_FAILURE, _("setgroups failed"));
 		if (setgid(gid) < 0)
